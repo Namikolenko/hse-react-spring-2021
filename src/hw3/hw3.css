@@ -1,0 +1,95 @@
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    background-color: #4f5a6e;
+}
+
+.header {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    display: flex;
+    width: 100%;
+    height: 60px;
+    background-color: #20232a;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.headerInto {
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    color: aqua;
+}
+
+.headerInto:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.column {
+    float: left;
+    overflow-x: hidden;
+    margin-left: 2vw;
+}
+
+.reactImage {
+    width: auto;
+    height: 50px;
+}
+
+.afterHeader {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.content-main {
+    margin: 5vw;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    display: grid;
+}
+
+.content-item {
+    margin: 3vw;
+    padding: 2vw;
+    border-style: double;
+    background-color: #dcedf2;
+}
+
+.content-inside {
+    margin-top: 0.7vw;
+}
+
+.button-confirm {
+    height: 54px;
+    padding: 8px;
+    font-size: 0.8rem;
+    font-weight: 900;
+    font-family: "Muli", serif;
+    color: #08c5fc;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    box-shadow: 0 0 0 1px inset rgba(236, 232, 225, 0.3);
+    position: relative;
+    margin: 10px 0;
+
+
+}
+
+.button-div {
+    z-index: 1;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
