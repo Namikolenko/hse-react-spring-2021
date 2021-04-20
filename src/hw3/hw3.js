@@ -29,7 +29,7 @@ export class MyTodoList extends React.Component {
                 <div className="content-inside">Описание задачи: {description}</div>
                 <div className="content-inside button-div">
                     <button className="button-confirm" onClick={() => {
-                        console.log(id + " is " + completed)
+                        console.log("Task " + id + " completed status = " + completed)
                     }}>Нажми меня чтобы узнать выполнена ли задача
                     </button>
                 </div>
