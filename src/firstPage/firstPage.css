@@ -53,10 +53,14 @@ body {
 
 .content-main {
     margin: 5vw;
-    align-content: center;
-    align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     display: grid;
+}
+
+.content-main-form {
+    position: fixed;
+    right: 6vw;
+    width: 31vw;
 }
 
 .content-item {
