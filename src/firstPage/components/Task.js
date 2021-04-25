@@ -10,21 +10,19 @@ export class Task extends React.Component {
 
     constructor({id, name, description, completed}) {
         super({id, name, description, completed});
-        const newState = {
+        this.state = {
             id: id,
             name: name,
             description: description,
             completed: completed
         }
-        this.state = newState
-        console.log(newState)
     }
 
     render() {
         return (
             <div className="content-item">
                 <div><h2>Задача {this.state.id}</h2></div>
-                <div className="content-inside">Название задачи "{this.state.name}"</div>
+                <div className="content-inside">Задача <h4>"{this.state.name}"</h4></div>
                 <div className="content-inside">Описание задачи: {this.state.description}</div>
                 <div className="content-inside button-div">
                     <button type="button" className="button-confirm" onClick={() => {

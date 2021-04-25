@@ -3,47 +3,23 @@ import {Task} from "./Task";
 import {AddNewTaskForm} from "./AddNewTaskForm";
 import data from '../data/data.json'
 
-const INITIAL_BUTTONS = {
-    name: "",
-    description: ""
-}
-
 export class List extends React.Component {
 
     lastId = 6
 
     state = {
         data: data,
-        buttons: INITIAL_BUTTONS
     }
 
-    addNameObj = (obj) => {
-        const newState = {
-            name: obj,
-            description: this.state.buttons.description
-        }
-        this.setState({buttons: newState})
-    }
-
-    addDescObj = (obj) => {
-        const newState = {
-            name: this.state.buttons.name,
-            description: obj
-        }
-        this.setState({buttons: newState})
-    }
-
-    onClickAddEvent = () => {
+    onClickAddEvent = ({name, description}) => {
         const obj = {
-            id: this.lastId,
-            name: this.state.buttons.name,
-            description: this.state.buttons.description,
+            id: this.state.data.length,
+            name: name,
+            description: description,
             completed: false
         }
         this.setState({data: [...this.state.data, obj]})
         this.lastId += 1
-        this.setState({buttons: INITIAL_BUTTONS})
-        console.log(this.state)
     }
 
     render() {
@@ -53,11 +29,7 @@ export class List extends React.Component {
                                                  name={it.name}
                                                  description={it.description}
                                                  completed={it.completed}/>)}
-                <AddNewTaskForm updateTextName={this.addNameObj}
-                                nameInput={this.state.buttons.name}
-                                updateTextDesc={this.addDescObj}
-                                nameDesc={this.state.buttons.description}
-                                buttonClick={this.onClickAddEvent}/>
+                <AddNewTaskForm buttonClick={this.onClickAddEvent}/>
             </div>
         )
     }

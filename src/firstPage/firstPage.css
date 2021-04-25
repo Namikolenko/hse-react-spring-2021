@@ -97,3 +97,7 @@ body {
     justify-content: center;
     display: flex;
 }
+
+h4 {
+    display: inline;
+}

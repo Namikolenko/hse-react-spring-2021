@@ -1,19 +1,40 @@
 import React from "react";
 
+const INITIAL_BUTTONS = {
+    name: "",
+    description: ""
+}
+
 export class AddNewTaskForm extends React.Component {
+
+    state = INITIAL_BUTTONS
+
+    onChange = (event) => {
+        const {value, name} = event.currentTarget
+        const newState = {...this.state.buttons, [name]: value}
+        this.setState(newState)
+    }
+
     render() {
         return (
             <div className="content-item content-main-form">
                 <h2>Add new task</h2>
                 <div>
                     Task name:
-                    <input value={this.props.nameInput} onChange={(e) => this.props.updateTextName(e.target.value)} name="name"/>
+                    <input value={this.state.name} name="name" onChange={this.onChange}/>
                 </div>
                 <div>
                     Task description:
-                    <input value={this.props.nameDesc} onChange={(e) => this.props.updateTextDesc(e.target.value)} name="description"/>
+                    <input value={this.state.description} name="description" onChange={this.onChange}/>
                 </div>
-                <button type="button" className="button-confirm" onClick={this.props.buttonClick}>Confirm and Add</button>
+                <button type="button"
+                        className="button-confirm"
+                        onClick={() => {
+                            this.props.buttonClick(this.state)
+                            this.setState(INITIAL_BUTTONS)
+                        }}>
+                    Confirm and Add
+                </button>
             </div>
         )
     }
