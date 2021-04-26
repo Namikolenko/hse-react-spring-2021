@@ -5,8 +5,6 @@ import data from '../data/data.json'
 
 export class List extends React.Component {
 
-    lastId = 6
-
     state = {
         data: data,
     }

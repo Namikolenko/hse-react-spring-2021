@@ -1,12 +1,6 @@
 import React from "react";
 
 export class Task extends React.Component {
-    state = {
-        id: 0,
-        name: "",
-        description: "",
-        completed: false
-    }
 
     constructor({id, name, description, completed}) {
         super({id, name, description, completed});

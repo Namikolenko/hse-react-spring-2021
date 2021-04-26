@@ -9,7 +9,7 @@ export const HeaderInfo = () => {
             <div className="headerInto">
                 <div className="column">Mikolenko Nikolay</div>
                 <div className="column"><img src={logo} className="reactImage" alt=""/></div>
-                <div className="column">Homework 2-3</div>
+                <div className="column">Homework 2-4</div>
             </div>
         </div>
     )
