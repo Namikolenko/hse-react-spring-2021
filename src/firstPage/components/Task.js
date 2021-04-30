@@ -20,12 +20,10 @@ export class Task extends React.Component {
                 <div className="content-inside">Описание задачи: {this.state.description}</div>
                 <div className="content-inside button-div">
                     <button type="button" className="button-confirm" onClick={() => {
-                        const oldStatus = this.state.completed.toString()
                         this.state.completed ? this.setState({completed: false}) : this.setState({completed: true})
-                        const newStatus = this.state.completed.toString()
 
-                        console.log("Task " + this.state.id + " changed status from " + oldStatus + " to " + newStatus)
-                    }}>{this.state.completed.toString()}
+                        this.props.onChangeCompleted(this.state.completed, this.props.index)
+                    }}>{{...this.state}.completed.toString()}
                     </button>
                 </div>
             </div>
