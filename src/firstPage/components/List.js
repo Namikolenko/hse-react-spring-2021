@@ -28,7 +28,7 @@ export class List extends React.Component {
 
     onChangeCompleted = (completed, index) => {
         let currentState = [...this.state.data]
-        currentState[index].completed = completed
+        currentState[index].completed = !completed
         this.setState({currentState})
     }
 
