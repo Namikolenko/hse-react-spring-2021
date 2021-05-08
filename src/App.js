@@ -1,8 +1,8 @@
 //import logo from './logo.svg';
 import './App.css';
-import "./hw3/hw3";
+import "./firstPage/assembly";
 import React from "react";
-import {HeaderInfo, MyTodoList} from "./hw3/hw3";
+import {HeaderInfo, MyTodoList} from "./firstPage/assembly";
 
 class Combiner extends React.Component {
     render() {
