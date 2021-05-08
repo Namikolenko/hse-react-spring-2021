@@ -9,7 +9,7 @@ export const Task = (props) => {
             <div className="content-inside button-div">
                 <button type="button" className="button-confirm" onClick={() => {
                     props.onChangeCompleted(props.completed, props.index)
-                }}>{{...props}.completed.toString()}
+                }}>{props.completed.toString()}
                 </button>
             </div>
         </div>

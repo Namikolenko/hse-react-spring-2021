@@ -11,8 +11,13 @@ export class AddNewTaskForm extends React.Component {
 
     onChange = (event) => {
         const {value, name} = event.currentTarget
-        const newState = {...this.state.buttons, [name]: value}
+        const newState = {...this.state, [name]: value}
         this.setState(newState)
+    }
+
+    confirmAddClick = () => {
+        this.props.buttonClick(this.state)
+        this.setState(INITIAL_BUTTONS)
     }
 
     render() {
@@ -29,10 +34,7 @@ export class AddNewTaskForm extends React.Component {
                 </div>
                 <button type="button"
                         className="button-confirm"
-                        onClick={() => {
-                            this.props.buttonClick(this.state)
-                            this.setState(INITIAL_BUTTONS)
-                        }}>
+                        onClick={this.confirmAddClick}>
                     Confirm and Add
                 </button>
             </div>

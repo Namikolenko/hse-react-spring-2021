@@ -10,6 +10,7 @@ export class List extends React.Component {
     }
 
     onClickAddEvent = ({name, description}) => {
+
         const obj = {
             id: this.state.data.length,
             name: name,
@@ -17,7 +18,6 @@ export class List extends React.Component {
             completed: false
         }
         this.setState({data: [...this.state.data, obj]})
-        this.lastId += 1
     }
 
     onClickBackend = () => {
@@ -27,9 +27,14 @@ export class List extends React.Component {
     }
 
     onChangeCompleted = (completed, index) => {
-        let currentState = [...this.state.data]
-        currentState[index].completed = !completed
-        this.setState({currentState})
+
+        this.setState(currentState => {
+            let newData = {...currentState.data, [index] : {...currentState.data[index]}}
+            newData[index].completed = !completed
+            return {
+                data : Object.values(newData)
+            }
+        })
     }
 
     render() {
