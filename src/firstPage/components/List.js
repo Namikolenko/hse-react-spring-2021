@@ -2,8 +2,15 @@ import React from "react";
 import {Task} from "./Task";
 import {AddNewTaskForm} from "./AddNewTaskForm";
 import data from '../data/data.json'
+import classnames from "classnames/bind";
+import styles from "../../styles.module.scss";
+import {ThemeContext} from "../../ThemeContext";
+
+const cx = classnames.bind(styles)
 
 export class List extends React.Component {
+
+    static contextType = ThemeContext
 
     state = {
         data: data,
@@ -39,13 +46,14 @@ export class List extends React.Component {
 
     render() {
         return (
-            <div className="content-main">
+            <div className={cx("content-main", `content-main-theme-${this.context}`)}>
                 {this.state.data.map(it => <Task id={it.id}
                                                  name={it.name}
                                                  description={it.description}
                                                  completed={it.completed}
                                                  index={this.state.data.findIndex((el) => el.id === it.id)}
                                                  onChangeCompleted={this.onChangeCompleted}
+                                                 context={this.context}
                 />)}
                 <AddNewTaskForm buttonClick={this.onClickAddEvent}/>
                 <button onClick={this.onClickBackend}>Type me to get extra tasks!</button>

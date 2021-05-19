@@ -1,11 +1,18 @@
 import React from "react";
+import classnames from "classnames/bind";
+import styles from "../../styles.module.scss";
+import {ThemeContext} from "../../ThemeContext";
 
 const INITIAL_BUTTONS = {
     name: "",
     description: ""
 }
 
+const cx = classnames.bind(styles)
+
 export class AddNewTaskForm extends React.Component {
+
+    static contextType = ThemeContext
 
     state = INITIAL_BUTTONS
 
@@ -22,7 +29,7 @@ export class AddNewTaskForm extends React.Component {
 
     render() {
         return (
-            <div className="content-item content-main-form">
+            <div className={cx("content-item", "content-main-form", `content-item-theme-${this.context}`)}>
                 <h2>Add new task</h2>
                 <div>
                     Task name:

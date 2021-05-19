@@ -3,13 +3,25 @@ import './App.css';
 import "./firstPage/assembly";
 import React from "react";
 import {HeaderInfo, MyTodoList} from "./firstPage/assembly";
+import {DEFAULT_THEME, ThemeContext} from "./ThemeContext";
 
 class Combiner extends React.Component {
+
+    state = {
+        theme: DEFAULT_THEME
+    }
+
+    changeTheme = (event) => {
+        this.setState({theme: event.target.value})
+    }
+
     render() {
         return (
             <div>
-                <HeaderInfo/>
-                <MyTodoList/>
+                <ThemeContext.Provider value={this.state.theme}>
+                    <HeaderInfo switchTheme={this.changeTheme} currentTheme={this.state.theme}/>
+                    <MyTodoList/>
+                </ThemeContext.Provider>
             </div>
         )
     }
