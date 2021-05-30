@@ -25,6 +25,9 @@ export class HeaderInfo extends React.Component {
                         <input type="radio" value="dark" checked={this.props.currentTheme === "dark"}
                                onClick={this.props.switchTheme}/> Dark theme
                     </div>
+                    <div className="column">
+                        <a href="/home">Get me home!</a>
+                    </div>
                 </div>
             </div>
         )
