@@ -1,0 +1,50 @@
+.header {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  display: flex;
+  width: 100%;
+  height: 60px;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+
+  &-theme-dark {
+    background-color: #20232a;
+    color: aqua;
+  }
+
+  &-theme-light {
+    background-color: wheat;
+    color: black;
+  }
+}
+
+.content-main {
+  justify-content: flex-start;
+  display: grid;
+
+  &-theme-dark {
+    background-color: #4f5a6e;
+  }
+
+  &-theme-light {
+    background-color: antiquewhite;
+  }
+}
+
+.content-item {
+  margin: 3vw;
+  padding: 2vw;
+  border-style: double;
+
+
+  &-theme-dark {
+    background-color: #dcedf2;
+  }
+
+  &-theme-light {
+    background-color: papayawhip;
+  }
+}

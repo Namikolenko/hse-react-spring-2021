@@ -2,7 +2,6 @@ body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-style: normal;
     font-weight: 400;
-    background-color: #4f5a6e;
 }
 
 .header {
@@ -24,7 +23,6 @@ body {
     padding-right: 20px;
     margin-left: auto;
     margin-right: auto;
-    color: aqua;
 }
 
 .headerInto:after {
