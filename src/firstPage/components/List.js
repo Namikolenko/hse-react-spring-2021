@@ -63,7 +63,6 @@ export class List extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log(this.props != nextProps)
         if (this.props != nextProps) {
             let tmpArrToDeploy = []
             if (this.props.match != undefined) {
@@ -95,9 +94,6 @@ export class List extends React.Component {
                 Object.entries(this.props.tasks).map(it => tmpArrToDeploy.push(it[1]))
                 this.setState({data: tmpArrToDeploy})
             }
-            console.log("local", this.state.data)
-            console.log("store", this.props.tasks)
-            console.log(nextProps)
         }
     }
 
@@ -117,9 +113,6 @@ export class List extends React.Component {
             this.projectItem['1'].tasksIds.push(obj.id)
 
         this.props.dispatchOnAddNewTaskChange({newTask: superObj, changeProject: this.projectItem})
-
-        console.log(this.props.tasks)
-        console.log(this.props.projects)
     }
 
     onChangeCompleted = (completed, index, id) => {
@@ -134,7 +127,6 @@ export class List extends React.Component {
                 this.props.dispatchStatusChange(updateTask)
             }
         })
-        console.log("data", this.state.data)
     }
 
     render() {
