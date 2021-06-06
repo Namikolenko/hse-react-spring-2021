@@ -62,7 +62,8 @@ export class List extends React.Component {
         }
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
+    componentWillReceiveProps(nextProps) {
+        console.log(this.props != nextProps)
         if (this.props != nextProps) {
             let tmpArrToDeploy = []
             if (this.props.match != undefined) {
@@ -94,9 +95,10 @@ export class List extends React.Component {
                 Object.entries(this.props.tasks).map(it => tmpArrToDeploy.push(it[1]))
                 this.setState({data: tmpArrToDeploy})
             }
+            console.log("local", this.state.data)
+            console.log("store", this.props.tasks)
+            console.log(nextProps)
         }
-        console.log(this.props != nextProps)
-        return this.props != nextProps;
     }
 
     onClickAddEvent = ({name, description}) => {
@@ -107,7 +109,6 @@ export class List extends React.Component {
             description: description,
             completed: false
         }
-        /*this.setState({data: [...this.state.data, obj]})*/
 
         let superObj = {}
         superObj[obj.id] = obj
@@ -122,14 +123,6 @@ export class List extends React.Component {
     }
 
     onChangeCompleted = (completed, index, id) => {
-
-        /*this.setState(currentState => {
-            let newData = {...currentState.data, [index]: {...currentState.data[index]}}
-            newData[index].completed = !completed
-            return {
-                data: Object.values(newData)
-            }
-        })*/
 
         Object.entries(this.props.tasks).map(item => {
             if (item[1].id == id) {
@@ -161,5 +154,5 @@ export class List extends React.Component {
     }
 }
 
-export default List
+
 export const NewList = connect(mapStateToProps, mapDispatchToProps)(List)

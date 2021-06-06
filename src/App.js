@@ -1,11 +1,10 @@
-//import logo from './logo.svg';
 import './App.css';
 import "./firstPage/assembly";
 import React from "react";
 import {MyTodoList} from "./firstPage/assembly";
 import {BrowserRouter, Switch, Route} from "react-router-dom"
 import {HomeComponent, Page404} from "./firstPage/components/Home";
-import List, {NewList} from "./firstPage/components/List";
+import {NewList} from "./firstPage/components/List";
 
 import {Provider} from 'react-redux'
 import {createStore} from "redux";
