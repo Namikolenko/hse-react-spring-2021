@@ -1,13 +1,23 @@
 import React from "react";
 import {Task} from "./Task";
 import {AddNewTaskForm} from "./AddNewTaskForm";
-import projects from "../data/projects.json"
-import tasks from "../data/tasks.json"
 import classnames from "classnames/bind";
 import styles from "../../styles.module.scss";
 import {ThemeContext} from "../../ThemeContext";
+import {handleAddNewTaskChange} from "../../actions/tasks";
+import {connect} from "react-redux";
 
 const cx = classnames.bind(styles)
+
+const mapStateToProps = (state) => ({
+    tasks: state.tasks.tasksById,
+    projects: state.tasks.projectsById,
+    theme: state.theme.theme
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    dispatchOnAddNewTaskChange: (newTasks) => dispatch(handleAddNewTaskChange(newTasks))
+})
 
 export class List extends React.Component {
 
@@ -16,7 +26,6 @@ export class List extends React.Component {
     state = {
         data: [],
     }
-    displayFormAdd = false
     name = ""
     tasksIds = []
 
@@ -26,16 +35,16 @@ export class List extends React.Component {
         if (this.props.match != undefined) {
             this.name = this.props.match.params.name
 
-            if (Object.entries(projects).find(el => el[1].name == this.name) == undefined) {
+            if (Object.entries(this.props.projects).find(el => el[1].name == this.name) == undefined) {
                 window.location.href = "/unknown"
             }
 
-            Object.entries(projects).map(item => {
+            Object.entries(this.props.projects).map(item => {
                 if (item[1].name == this.name) {
                     this.tasksIds = item[1].tasksIds
                     if (this.tasksIds.length > 1) {
                         let someArr = []
-                        Object.entries(tasks).map(it => {
+                        Object.entries(this.props.tasks).map(it => {
 
                             if (this.tasksIds.find(itt => itt == parseInt(it[0])) != undefined) {
                                 someArr.push(it)
@@ -49,7 +58,7 @@ export class List extends React.Component {
             })
         }
         else {
-            Object.entries(tasks).map(it => tmpArrToDeploy.push(it[1]))
+            Object.entries(this.props.tasks).map(it => tmpArrToDeploy.push(it[1]))
             this.state.data = tmpArrToDeploy
         }
     }
@@ -57,18 +66,12 @@ export class List extends React.Component {
     onClickAddEvent = ({name, description}) => {
 
         const obj = {
-            id: Object.entries(tasks).length + 1,
+            id: Object.entries(this.props.tasks).length + 1,
             name: name,
             description: description,
             completed: false
         }
         this.setState({data: [...this.state.data, obj]})
-    }
-
-    onClickBackend = () => {
-        fetch("http://namikolenko.ru/api/getAllTasks").then(r => r.json())
-            .then(d => this.setState({data: [...this.state.data, ...d]}))
-        console.log("Server Dead Inside, но можно хаплатить и он оживет")
     }
 
     onChangeCompleted = (completed, index) => {
@@ -84,7 +87,7 @@ export class List extends React.Component {
 
     render() {
         return (
-            <div className={cx("content-main", `content-main-theme-${this.context}`)}>
+            <div className={cx("content-main", `content-main-theme-${this.props.theme}`)}>
                 {this.state.data.map(it => <Task id={it.id}
                                                  name={it.name}
                                                  description={it.description}
@@ -93,11 +96,11 @@ export class List extends React.Component {
                                                  onChangeCompleted={this.onChangeCompleted}
                                                  context={this.context}
                 />)}
-                <AddNewTaskForm buttonClick={this.onClickAddEvent} disp={this.displayFormAdd}/>
-                <button onClick={this.onClickBackend}>Type me to get extra tasks!</button>
+                <AddNewTaskForm buttonClick={this.onClickAddEvent}/>
             </div>
         )
     }
 }
 
 export default List
+export const NewList = connect(mapStateToProps, mapDispatchToProps)(List)

@@ -2,45 +2,38 @@
 import './App.css';
 import "./firstPage/assembly";
 import React from "react";
-import {HeaderInfo, MyTodoList} from "./firstPage/assembly";
-import {DEFAULT_THEME, ThemeContext} from "./ThemeContext";
+import {MyTodoList} from "./firstPage/assembly";
 import {BrowserRouter, Switch, Route} from "react-router-dom"
 import {HomeComponent, Page404} from "./firstPage/components/Home";
-import List from "./firstPage/components/List";
+import List, {NewList} from "./firstPage/components/List";
+
+import {Provider} from 'react-redux'
+import {createStore} from "redux";
+import {rootReducer} from "./reducers";
+import {Header} from "./firstPage/components/Header";
+
+const store = createStore(rootReducer)
 
 class Combiner extends React.Component {
-
-    state = {
-        theme: DEFAULT_THEME
-    }
-
-    changeTheme = (event) => {
-        this.setState({theme: event.target.value})
-    }
 
     render() {
         return (
             <div>
-                <ThemeContext.Provider value={this.state.theme}>
+                <Provider store={store}>
                     <BrowserRouter>
                         <Switch>
                             <Route path="/">
-                                <HeaderInfo switchTheme={this.changeTheme} currentTheme={this.state.theme}/>
+                                <Header/>
                                 <Switch>
                                     <Route exact path="/home" component={HomeComponent}/>
                                     <Route exact path="/allTasks" component={MyTodoList}/>
                                     <Route exact path="/unknown" component={Page404}/>
-                                    <Route exact path="/:name" component={List}/>
+                                    <Route exact path="/:name" component={NewList}/>
                                 </Switch>
-
                             </Route>
-
-
                         </Switch>
                     </BrowserRouter>
-
-
-                </ThemeContext.Provider>
+                </Provider>
             </div>
         )
     }
