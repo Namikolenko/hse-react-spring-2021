@@ -28,7 +28,7 @@ const HeaderComponent = ({
             <div className="headerInto">
                 <div className="column">Mikolenko Nikolay</div>
                 <div className="column"><img src={logo} className="reactImage" alt=""/></div>
-                <div className="column">Homework 2-5</div>
+                <div className="column">Homework 2-7</div>
                 <div className="column">
                     <input type="radio" value="light" checked={theme === "light"}
                            onClick={onThemeChange}/> Light theme

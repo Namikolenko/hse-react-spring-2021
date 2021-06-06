@@ -13,13 +13,14 @@ export const tasksReducer = (state = initialState, action) => {
         case STATUS_CHANGE: {
             return {
                 ...state,
-                tasksById: action.payload
+                tasksById: Object.assign({...state.tasksById}, action.payload)
             }
         }
         case ADD_NEW_TASK: {
             return {
                 ...state,
-                tasksById: action.payload
+                tasksById: Object.assign({...state.tasksById}, action.payload.newTask),
+                projectsById: Object.assign({...state.projectsById}, action.payload.changeProject)
             }
         }
         default:
