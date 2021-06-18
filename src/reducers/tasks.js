@@ -1,26 +1,22 @@
-import {ADD_NEW_TASK, STATUS_CHANGE} from "../actions/tasks";
-
-import projects from "../firstPage/data/projects.json"
-import tasks from "../firstPage/data/tasks.json"
+import {SET_PROJECTS, SET_TASKS} from "../actions/tasks";
 
 const initialState = {
-    projectsById: projects,
-    tasksById: tasks
+    projectsById: [],
+    tasksById: []
 }
 
 export const tasksReducer = (state = initialState, action) => {
     switch (action.type) {
-        case STATUS_CHANGE: {
+        case SET_PROJECTS: {
             return {
                 ...state,
-                tasksById: Object.assign({...state.tasksById}, action.payload)
+                projectsById: action.payload
             }
         }
-        case ADD_NEW_TASK: {
+        case SET_TASKS: {
             return {
                 ...state,
-                tasksById: Object.assign({...state.tasksById}, action.payload.newTask),
-                projectsById: Object.assign({...state.projectsById}, action.payload.changeProject)
+                tasksById: action.payload
             }
         }
         default:

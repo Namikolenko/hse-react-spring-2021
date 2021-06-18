@@ -21,3 +21,16 @@ export const normalizeState = (projectArray, tasksIdsInput, outputId, nameOfProj
 
     return [tasksById, projectsById]
 }
+
+const BASE_URL = 'http://valerystatinov.com/api'
+export const request = (url, method = 'GET', body) => {
+    console.log(url, method, body)
+    return fetch(`${BASE_URL}${url}`, {
+        method,
+        headers: {
+            Token: 'namikolenko2',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+    }).then(res => res.json())
+}
