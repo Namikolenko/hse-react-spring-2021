@@ -1,18 +1,20 @@
 import React from "react";
 import classnames from "classnames/bind";
 import styles from "../../styles.module.scss";
-import {ThemeContext} from "../../ThemeContext";
+import {connect} from "react-redux";
 
 const INITIAL_BUTTONS = {
     name: "",
     description: ""
 }
 
+const mapStateToProps = (state) => ({
+    theme: state.theme.theme
+})
+
 const cx = classnames.bind(styles)
 
-export class AddNewTaskForm extends React.Component {
-
-    static contextType = ThemeContext
+export class AddNewTaskFormComponent extends React.Component {
 
     state = INITIAL_BUTTONS
 
@@ -29,7 +31,7 @@ export class AddNewTaskForm extends React.Component {
 
     render() {
         return (
-            <div className={cx("content-item", "content-main-form", `content-item-theme-${this.context}`)}>
+            <div className={cx("content-item", "content-main-form", `content-item-theme-${this.props.theme}`)}>
                 <h2>Add new task</h2>
                 <div>
                     Task name:
@@ -49,4 +51,4 @@ export class AddNewTaskForm extends React.Component {
     }
 }
 
-export default AddNewTaskForm
+export const AddNewTaskForm = connect(mapStateToProps)(AddNewTaskFormComponent)
