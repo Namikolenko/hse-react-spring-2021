@@ -1,17 +1,18 @@
 import './App.css';
 import "./firstPage/assembly";
 import React from "react";
+import thunk from "redux-thunk";
 import {MyTodoList} from "./firstPage/assembly";
 import {BrowserRouter, Switch, Route} from "react-router-dom"
-import {HomeComponent, Page404} from "./firstPage/components/Home";
+import {NewHomeComponent, Page404} from "./firstPage/components/Home";
 import {NewList} from "./firstPage/components/List";
 
 import {Provider} from 'react-redux'
-import {createStore} from "redux";
+import {applyMiddleware, createStore} from "redux";
 import {rootReducer} from "./reducers";
 import {Header} from "./firstPage/components/Header";
 
-const store = createStore(rootReducer)
+const store = createStore(rootReducer, applyMiddleware(thunk))
 
 class Combiner extends React.Component {
 
@@ -24,7 +25,7 @@ class Combiner extends React.Component {
                             <Route path="/">
                                 <Header/>
                                 <Switch>
-                                    <Route exact path="/home" component={HomeComponent}/>
+                                    <Route exact path="/home" component={NewHomeComponent}/>
                                     <Route exact path="/allTasks" component={MyTodoList}/>
                                     <Route exact path="/unknown" component={Page404}/>
                                     <Route exact path="/:name" component={NewList}/>
